@@ -1,8 +1,6 @@
-# Welcome to your CDK TypeScript project
+# Datadog Serverless inferred spans demo
 
-This is a blank project for CDK development with TypeScript.
-
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+This repo contains CDK scripts/ Lambda functions that demo how inferred spans work within Serverless APM. 
 
 ## Useful commands
 
