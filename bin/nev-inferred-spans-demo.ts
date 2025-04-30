@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import * as cdk from 'aws-cdk-lib';
-import { NevInferredSpansDemoStack } from '../lib/nev-inferred-spans-demo-stack';
+import { NevInferredSpansDemoStack } from '../lib/inferred-spans-demo-stack';
 
 const app = new cdk.App();
 new NevInferredSpansDemoStack(app, 'NevInferredSpansDemoStack', {
