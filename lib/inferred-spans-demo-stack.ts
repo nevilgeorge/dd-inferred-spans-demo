@@ -31,6 +31,7 @@ export class NevInferredSpansDemoStack extends cdk.Stack {
 
     // Lambda function for publisher.
     const publisherLambda = new lambda.Function(this, 'nev-inferred-spans-publisher', {
+      functionName: 'nev-inferred-spans-publisher',
       runtime: lambda.Runtime.NODEJS_20_X,  // Specify runtime
       handler: 'publisher.handler',            // Specify the handler function
       code: lambda.Code.fromAsset('lambda'), // Path to Lambda code
@@ -38,12 +39,14 @@ export class NevInferredSpansDemoStack extends cdk.Stack {
       timeout: cdk.Duration.seconds(5),     // Timeout in seconds
       environment: {
         DD_COLD_START_TRACING: 'false',
+        DD_SERVICE: 'nev-inferred-spans-demo',
         SQS_QUEUE_URL: queue.queueUrl,
       }
     });
     
     // Lambda function for consumer.
     const consumerLambda = new lambda.Function(this, 'nev-inferred-spans-consumer', {
+      functionName: 'nev-inferred-spans-consumer',
       runtime: lambda.Runtime.NODEJS_20_X,  // Specify runtime
       handler: 'consumer.handler',            // Specify the handler function
       code: lambda.Code.fromAsset('lambda'), // Path to Lambda code
@@ -51,6 +54,7 @@ export class NevInferredSpansDemoStack extends cdk.Stack {
       timeout: cdk.Duration.seconds(5),     // Timeout in seconds
       environment: {
         DD_COLD_START_TRACING: 'false',
+        DD_SERVICE: 'nev-inferred-spans-demo',
         TABLE_NAME: userTable.tableName, // DynamoDB table name to write to.
       }
     });
